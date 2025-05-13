@@ -24,11 +24,10 @@ The Wordle Solver is a Python application that intelligently guesses words in a 
 -   **Statistics**: Tracks and displays win rates and average guesses over multiple games.
 -   **Flexible Configuration**: Supports API key management via environment variables or command-line arguments.
 -   **Fallback Mechanisms**: Includes a basic internal word list if NLTK is unavailable and handles API errors gracefully.
--   **Demonstration Script**: `demo.py` showcases various features and usage scenarios.
 
 ## 3. System Architecture and Code Structure
 
-The project consists primarily of two Python scripts: `wordle_solver.py` (the core engine) and `demo.py` (a script to demonstrate functionalities).
+The project consists primarily of the `wordle_solver.py` script, which is the core engine.
 
 ### 3.1. `wordle_solver.py`
 
@@ -74,11 +73,7 @@ This is the central class orchestrating the game.
 -   Initializes and runs one or more `WordleSolver` games based on arguments.
 -   Collects and prints overall statistics for multiple games.
 
-### 3.2. `demo.py`
-
-A script that uses `subprocess` to run `wordle_solver.py` with various command-line arguments, demonstrating different features and modes of operation. This is useful for quickly testing and showcasing the solver's capabilities.
-
-### 3.3. `requirements.txt`
+### 3.2. `requirements.txt`
 
 Specifies project dependencies:
 -   `requests`: For making HTTP requests to the Wordle and OpenAI APIs.
@@ -157,14 +152,6 @@ The script accepts several arguments to customize its behavior:
     ```bash
     python wordle_solver.py --games 5 --seed 42
     ```
-
-### 5.2. Running the Demonstration Script (`demo.py`)
-
-The `demo.py` script executes a predefined set of test cases to showcase different functionalities:
-```bash
-python demo.py
-```
-It will run `wordle_solver.py` as a subprocess with various arguments and print the results.
 
 ## 6. Detailed Algorithm and Logic
 
@@ -291,29 +278,7 @@ A detailed prompt is constructed to provide the AI with the current state of kno
     2.  If AI fails or is disabled, try to pick a word from the original dictionary that reveals the most new information.
     3.  As a last resort, pick a completely random word from the original dictionary. This ensures the game can always proceed with a guess.
 
-## 9. Demonstration Script (`demo.py`)
-
-### 9.1. Purpose
-
-`demo.py` serves as an automated test suite and showcase of `wordle_solver.py`'s capabilities. It runs the main solver script as a subprocess with a variety of command-line arguments to illustrate different modes and features.
-
-### 9.2. How to Run
-
-```bash
-python demo.py
-```
-
-### 9.3. Showcased Scenarios
-
-The script typically includes tests for:
--   Solving with a specific seed for reproducibility.
--   Solving for a known target word.
--   Solving challenging words.
--   Solving with AI assistance disabled.
--   Solving multiple games for statistical output.
--   Solving the daily puzzle.
-
-## 10. Potential Future Enhancements
+## 9. Potential Future Enhancements
 
 -   **Advanced Guessing Strategy**: Implement a more sophisticated algorithm for `choose_next_guess` when multiple candidates exist, such as selecting the word that is statistically likely to reduce the number of possible candidates the most (e.g., based on letter frequency in remaining candidates).
 -   **Improved Dictionary Management**: Allow users to provide custom dictionary files.
